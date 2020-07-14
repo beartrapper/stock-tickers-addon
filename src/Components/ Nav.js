@@ -33,6 +33,20 @@ export default function Nav() {
                 </a>
               </Link>
             </li>
+
+            <li
+              className={
+                window.location.href.includes("crypto-overview")
+                  ? "active"
+                  : "remove-link-issue"
+              }
+            >
+              <Link className="remove-link-issue" to="/crypto-overview">
+                <a className="remove-link-issue" href="#">
+                  Crypto Overview
+                </a>
+              </Link>
+            </li>
             <li
               className={
                 window.location.href.includes("detailed-quote") ? "active" : ""
