@@ -32,7 +32,7 @@ export default function DetailedOverview() {
         setLoading(true);
         axios
           .get(
-            `http://api.marketstack.com/v1/tickers/${symbolsArray[counter]}?access_key=3a18c181b4a13c580bd27040d54be74a`
+            `https://api.marketstack.com/v1/tickers/${symbolsArray[counter]}?access_key=6d427f17f573fda98386eecbff4d9ce6`
           )
           .then((res) => {
             tableElements.push(res.data);
@@ -54,10 +54,10 @@ export default function DetailedOverview() {
       //for single stock
       axios
         .get(
-          `http://api.marketstack.com/v1/tickers/${tickerSymbol}/eod/latest?access_key=3a18c181b4a13c580bd27040d54be74a`
+          `https://api.marketstack.com/v1/intraday/latest?access_key=6d427f17f573fda98386eecbff4d9ce6&symbols=${tickerSymbol}`
         )
         .then((res) => {
-          setStocksData(res.data);
+          setStocksData(res.data.data[0]);
           setRedirectSpecific(true);
         })
         .catch((err) => {

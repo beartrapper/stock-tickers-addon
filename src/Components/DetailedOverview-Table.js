@@ -20,7 +20,7 @@ export default function DetailedOverviewTable() {
 
     axios
       .get(
-        `http://api.marketstack.com/v1/tickers/${item.symbol}/eod/latest?access_key=3a18c181b4a13c580bd27040d54be74a`
+        `https://api.marketstack.com/v1/tickers/${item.symbol}/eod/latest?access_key=6d427f17f573fda98386eecbff4d9ce6`
       )
       .then((res) => {
         setStocksData(res.data);
