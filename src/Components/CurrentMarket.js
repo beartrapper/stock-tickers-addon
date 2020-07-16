@@ -132,12 +132,13 @@ export default function CurrentMarket() {
                     { name: symbolsArrayNASDAQ[4], value: pricesNASDAQ[4] },
                   ],
                 ]);
+                setDone(true);
               })
               .catch((err) => {
                 console.log(err);
               });
             setNASDAQstocks(NASDAQarray);
-            setDone(true);
+            // setDone(true);
           })
           .catch((err) => {
             console.log(err);
@@ -171,7 +172,7 @@ export default function CurrentMarket() {
       {redirectSpecific ? (
         <Redirect
           to={{
-            pathname: "/detailed-quote/specific",
+            pathname: "/detailed-stockprice/specific",
             state: {
               data: stocksData,
             },
@@ -203,7 +204,7 @@ export default function CurrentMarket() {
               <div className="col-sm-8">
                 <h5>Market Movers</h5>
                 <small>
-                  Click on the stock that you need to see the details of
+                  Click on the Holding you need to see the stock price of{" "}
                 </small>
               </div>
             </div>

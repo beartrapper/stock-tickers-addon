@@ -42,7 +42,7 @@ export default function Charting() {
       {redirect ? (
         <Redirect
           to={{
-            pathname: "/charting/specific",
+            pathname: "/stockmarket-charting/specific",
             state: {
               data,
             },

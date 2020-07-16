@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      @-webkit-keyframes ticker {
+        0% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+          visibility: visible;
+        }
+        100% {
+          -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+        }
+      }
+      @keyframes ticker {
+        0% {
+          -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+          visibility: visible;
+        }
+        100% {
+          -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+        }
+      }
+      .ticker-wrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        height: 2rem;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding-left: 100%;
+        box-sizing: content-box;
+      }
+      .ticker-wrap .ticker {
+        display: inline-block;
+        height: 2rem;
+        line-height: 2rem;
+        white-space: nowrap;
+        padding-right: 100%;
+        box-sizing: content-box;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+        -webkit-animation-name: ticker;
+        animation-name: ticker;
+        -webkit-animation-duration: 30s;
+        animation-duration: 30s;
+      }
+      .ticker-wrap .ticker__item {
+        display: inline-block;
+        padding: 0 1rem;
+        font-size: 1rem;
+        color: white;
+      }
+    </style>
+    <div class="ticker-wrap">
+      <div class="ticker" id="ticker"></div>
+    </div>
+
+    <script>
+      fetch(
+        "https://api.marketstack.com/v1/exchanges/XNAS/tickers?access_key=6d427f17f573fda98386eecbff4d9ce6"
+      )
+        .then(function (response) {
+          // The API call was successful!
+          return response.json();
+        })
+        .then(function (data) {
+          // This is the JSON from our response
+          let symbolsArray = data.data.tickers;
+          console.log(symbolsArray);
+
+          let TwentyValuesArray = [];
+          for (let count = 0; count < 20; count++) {
+            TwentyValuesArray[count] = symbolsArray[count].symbol;
+          }
+          symbolsArray = TwentyValuesArray.join();
+          console.log(symbolsArray);
+
+          //getting the values from symbolsArray
+          fetch(
+            `https://api.marketstack.com/v1/eod/latest?access_key=6d427f17f573fda98386eecbff4d9ce6&symbols=${symbolsArray}`
+          )
+            .then(function (response) {
+              // The API call was successful!
+              return response.json();
+            })
+            .then(function (data) {
+              // This is the JSON from our response
+              console.log("prices", data);
+              //fetching the parent element
+              let element = document.getElementById("ticker");
+              console.log("element", element);
+              for (let count = 0; count < 20; count++) {
+                var div = document.createElement("div");
+                div.className += " ticker__item";
+                console.log(data.data[count]);
+                div.innerText =
+                  data.data[count].symbol + " " + data.data[count].close;
+                element.appendChild(div);
+              }
+            })
+            .catch(function (err) {
+              // There was an error
+              console.warn("Something went wrong.", err);
+            });
+        })
+        .catch(function (err) {
+          // There was an error
+          console.warn("Something went wrong.", err);
+        });
+    </script>
+  </body>
+</html>

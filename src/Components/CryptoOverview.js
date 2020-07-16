@@ -76,7 +76,7 @@ export default function CryptoOverview() {
       {redirect ? (
         <Redirect
           to={{
-            pathname: "/crypto-specific",
+            pathname: "/cryptocurrency-overview/specific",
             state: {
               data: cryptoData,
               name,
@@ -99,7 +99,9 @@ export default function CryptoOverview() {
           <div className="col-sm-4 pt-5 ">
             <div className="row pb-3 bg-light pr-3 pt-3 pl-5 mb-5">
               <b>Market Percentage</b>
-              <small>Click on the currency to see details</small>
+              <small>
+                click on the cryptocurrency you need to see trading price{" "}
+              </small>
             </div>
             <div className="row" onClick={() => handleClick("bitcoin")}>
               <p className="text-center">

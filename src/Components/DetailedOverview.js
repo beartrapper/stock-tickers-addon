@@ -71,7 +71,7 @@ export default function DetailedOverview() {
       {redirectSpecific ? (
         <Redirect
           to={{
-            pathname: "/detailed-quote/specific",
+            pathname: "/detailed-stockprice/specific",
             state: {
               data: stocksData,
             },
@@ -80,12 +80,12 @@ export default function DetailedOverview() {
       ) : (
         <></>
       )}
-      {/* redirecting to the tables stock page */}
 
+      {/* redirecting to the tables stock page */}
       {redirectTable ? (
         <Redirect
           to={{
-            pathname: "/detailed-quote/table",
+            pathname: "/detailed-stockprice/table",
             state: {
               data: tableElements,
             },

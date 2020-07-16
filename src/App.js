@@ -15,19 +15,34 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" component={DetailedOverview} exact />
-        <Route path="/market-overview" component={CurrentMarket} />
-        <Route path="/detailed-quote" component={DetailedOverview} exact />
-        <Route path="/charting" component={Charting} exact />
-        <Route path="/charting/specific" component={ChartingSpecific} exact />
         <Route
-          path="/detailed-quote/table"
+          path="/stockmarket-livemarket-overview"
+          component={CurrentMarket}
+        />
+        <Route path="/detailed-stockprice" component={DetailedOverview} exact />
+        <Route path="/stockmarket-charting" component={Charting} exact />
+        <Route
+          path="/stockmarket-charting/specific"
+          component={ChartingSpecific}
+          exact
+        />
+        <Route
+          path="/detailed-stockprice/table"
           component={DetailedOverviewTable}
           exact
         />
-        <Route path="/crypto-overview" component={CryptoOverview} exact />
-        <Route path="/crypto-specific" component={CryptoSpecific} exact />
         <Route
-          path="/detailed-quote/specific"
+          path="/cryptocurrency-overview"
+          component={CryptoOverview}
+          exact
+        />
+        <Route
+          path="/cryptocurrency-overview/specific"
+          component={CryptoSpecific}
+          exact
+        />
+        <Route
+          path="/detailed-stockprice/specific"
           component={DetailedOverviewSpecific}
           exact
         />

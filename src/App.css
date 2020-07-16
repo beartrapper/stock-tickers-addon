@@ -196,3 +196,6 @@
 .remove-link-issue:hover {
   outline: none;
 }
+.custom-padding-nav {
+  padding-left: 15vw;
+}
